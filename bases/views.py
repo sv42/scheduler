@@ -11,6 +11,7 @@ def index(request):
     return render(request, 'bases/index.html', data)
 
 
+
 def bases_home(request):
     lessons = Lesson.objects.all()
     teachers = Teacher.objects.all()

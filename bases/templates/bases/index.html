@@ -1,13 +1,13 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ua">
 
 <head>
-    <title>{{ title }}</title>
+    <title>Розклад уроків</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'grade/css/grade.css' %}">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css">
 
 </head>
@@ -33,7 +33,7 @@
 
                 <li class="search-box">
                     <i class="bx bx-search icon"></i>
-                    <input type="text" placeholder="Search...">
+                    <input type="text" placeholder="Пошук...">
                 </li>
 
                 <ul class="menu-links">
@@ -45,10 +45,9 @@
                     </li>
 
                     <li class="nav-link">
-                        <a href="/bases">
+                        <a href="/base">
                             <i class="bx bx-bar-chart-alt-2 icon"></i>
                             <span class="text nav-text">Розклад уроків</span>
-
                         </a>
                     </li>
 
@@ -102,7 +101,40 @@
     </nav>
 
     <section class="home">
-        <div class="text">Привіт &#128512;</div>
+        <div id="mainContent" class="content">
+            <div class="table-container">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">№</th>
+                            <th scope="col">Предмет</th>
+                            <th scope="col">Початок</th>
+                            <th scope="col">Кінець</th>
+                            <th scope="col">Тривалість</th>
+                            <th scope="col">Вчитель</th>
+                            <th scope="col">Домашнє завдання</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for lesson in lessons %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ lesson.subject.title }}</td>
+                            <td>{{ lesson.start|time:"H:i" }}</td>
+                            <td>{{ lesson.finish|time:"H:i" }}</td>
+                            <td>{{ lesson.duration|time:"H:i" }}</td>
+                            <td>{{ lesson.teacher.name }}</td>
+                            <td>
+                                {% for homework in lesson.homeworks.all %}
+                                {{ homework.task }}<br>
+                                {% endfor %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </section>
 
     <script>
