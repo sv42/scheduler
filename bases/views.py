@@ -1,19 +1,14 @@
 # views.py
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-from .models import Subject, Lesson, Teacher, Homework
-from django.contrib.auth.models import User
-from .models import SchoolClass
+from .models import Subject, Lesson, Teacher, Homework, SchoolClass
+from django.contrib.auth.models import Group,User
 
-def index(request):
-    data = {
-        'title': 'Розклад уроків'
-    }
-    return render(request, 'bases/index.html', data)
-
-
-
+@login_required
 def bases_home(request):
-    lessons = Lesson.objects.all()
+    user_groups = request.user.groups.values_list('id', flat=True)
+
+    lessons = Lesson.objects.filter(groups__in=user_groups).distinct()
     teachers = Teacher.objects.all()
     subjects = Subject.objects.all()
     homework = Homework.objects.all()
@@ -23,10 +18,11 @@ def bases_home(request):
         'teachers': teachers,
         'subjects': subjects,
         'homework': homework
-        
     }
 
     return render(request, 'bases/index.html', context)
+
+
 
 def my_view(request):
     if request.method == 'POST':
@@ -38,7 +34,7 @@ def user_profile(request):
     return render(request, 'user_profile.html', {'user': user})
 
 def user_class_view(request):
-    user_class = SchoolClass.objects.filter(classes=request.user).first()
+    user_class = SchoolClass.objects.filter(students=request.user).first()
 
     return render(request, 'your_template.html', {'user_class': user_class})
 
