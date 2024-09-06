@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'django_extensions',
     'bases',
     'grade',
     'main',
@@ -123,7 +124,6 @@ STATIC_URL = "static/"
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
-    BASE_DIR / "../bases/static",
 ]
 
 LOGIN_URL = '/login/'

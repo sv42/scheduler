@@ -33,6 +33,7 @@ def user_profile(request):
     user = User.objects.get(id=2) 
     return render(request, 'user_profile.html', {'user': user})
 
+
 def user_class_view(request):
     user_class = SchoolClass.objects.filter(students=request.user).first()
 

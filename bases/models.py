@@ -34,7 +34,8 @@ class Homework(models.Model):
 
 class SchoolClass(models.Model):  
     grade = models.IntegerField("Клас")
-    students = models.ManyToManyField(User, related_name='school_classes')
+    students = models.ManyToManyField(Group, related_name='school_classes')
+    
     
     def __str__(self):
         return f'Клас {self.grade}'

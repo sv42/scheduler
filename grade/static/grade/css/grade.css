@@ -320,15 +320,21 @@ body.dark .home .text {
 }
 
 table {
+    margin-left: 25px;
     width: 900px;
     height: 200px;
-    float: center;
-    margin-left: 5px;
+    border-collapse: collapse;
 }
+
 
 table,
 th,
 td {
     text-align: center;
-    border-collapse: collapse;
+}
+
+body.dark table,
+body.dark th,
+body.dark td {
+    color: #fff;
 }
