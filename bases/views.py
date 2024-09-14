@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from .models import Subject, Lesson, Teacher, Homework, SchoolClass
 from django.contrib.auth.models import Group,User
+from django.contrib.auth.decorators import login_required
 
 @login_required
 def bases_home(request):

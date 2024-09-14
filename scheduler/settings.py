@@ -31,6 +31,16 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+MIDDLEWARE = [
+    'main.middleware.RedirectIfNotAuthenticatedMiddleware',
+]
+
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'home'  # або інша сторінка після входу
+
+
+
 INSTALLED_APPS = [
     'django_extensions',
     'bases',

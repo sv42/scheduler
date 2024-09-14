@@ -9,7 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'bases/css/bases.css' %}">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css">
-
 </head>
 
 <body>
@@ -76,7 +75,7 @@
 
             <div class="bottom-content">
                 <li class="">
-                    <a href="#">
+                    <a href="{% url 'logout_and_clear_cache' %}">
                         <i class="bx bx-log-out icon"></i>
                         <span class="text nav-text">Logout</span>
                     </a>
@@ -101,6 +100,10 @@
 
     <section class="home">
         <div id="mainContent" class="content">
+            <div class="date">
+                <p></p> <!-- Додаємо дату -->
+            </div>
+
             <div class="table-container">
                 <table class="table table-striped table-hover">
                     <thead>
